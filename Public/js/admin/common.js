@@ -18,13 +18,18 @@ $("#singcms-button-submit").click(function(){
         postData[this.name]= this.value;
     });
 
-    var url = SCOPE.jump_url;
+    var url = SCOPE.save_url;
+    var jump_url = SCOPE.jump_url;
 
     $.post(url,postData,function(result){
         if(result.status ==1 ){
+            //成功
+            return dialog.success(result.message,jump_url);
 
         }
         if(result.status ==0 ){
+            //失败
+            return dialog.error(result.message);
 
         }
 
@@ -32,4 +37,47 @@ $("#singcms-button-submit").click(function(){
     },'JSON');
 
 });
+
+/**
+ * 编辑模式
+ */
+$('.singcms-table #singcms-edit').on('click',function () {
+    var id = $(this).attr('attr-id');
+    var url = SCOPE.edit_url+'&id='+id;
+    window.location.href=url;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

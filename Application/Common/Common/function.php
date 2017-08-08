@@ -33,3 +33,50 @@ function getStatus($status){
     }
     return $str;
 }
+
+function getAdminMenuUrl($nav){
+    $url = '/admin.php?c='.$nav['c'].'&a='.$nav['a'];
+    if($nav['f'] =='index'){
+        $url = '/admin.php?c='.$nav['c'];
+    }
+    return $url;
+
+}
+
+function getActive($navc){
+    $c= strtolower(CONTROLLER_NAME);
+    if(strtolower($navc) == $c){
+        return 'class="active"';
+    }
+    return '';
+
+}
+function showKind($status,$data){
+    header('Content-type:application/json;charset=UTF-8');
+    if($status==0){
+        exit(json_encode(array('error'=>0,'url'=>$data)));
+    }
+    exit(json_encode(array('error'=>1,'message'=>'长传失败~')));
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

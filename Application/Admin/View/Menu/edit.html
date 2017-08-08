@@ -75,12 +75,12 @@
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">状态:</label>
                         <div class="col-sm-5">
-                            <input type="radio" name="status" id="optionsRadiosInline1" value="1" <if condition="$menu.status eq 1" >checked</if>  > 开启
+                            <input type="radio" name="status" id="optionsRadiosInline1" value="1" <if condition="$menu.status eq 1" >checked</if> > 开启
                             <input type="radio" name="status" id="optionsRadiosInline2" value="0" <if condition="$menu.status eq 0" >checked</if> > 关闭
                         </div>
 
                     </div>
-                    <!--隐藏栏 确认更新什么-->
+                    <!--隐藏栏 确认更新什么内容 引入主键ID-->
                     <input type="hidden" name="menu_id" value="{$menu.menu_id}" />
 
                     <div class="form-group">

@@ -90,6 +90,57 @@ class MenuController extends CommonController{
 
     }
 
+    public function setStatus(){
+        try {
+            if ($_POST) {
+                $id = $_POST['id'];
+                $status = $_POST['status'];
+                //执行数据更新操作
+                $res = D("Menu")->updateStatusById($id, $status);
+                if ($res) {
+                    return $this->show(1, '操作成功~');
+                } else {
+                    return show(0, '操作失败~');
+                }
+
+            }
+        }catch (Exception $e){
+            return show(0,$e->getMessage());
+        }
+
+        return show(0,'没有提交的数据~');
+
+    }
+
+    //排序
+    public function listorder(){
+        $listorder = $_POST['listorder'];
+        $jump_url = $_SERVER['HTTP_REFERER'];
+        $errors = array();
+        if($listorder){
+            try {
+                foreach ($listorder as $menuId => $v) {
+                    //执行更新
+                    $id = D("Menu")->updateMenuListorderById($menuId, $v);
+                    if ($id === false) {
+                        $errors[] = $menuId;
+                    }
+
+                }
+            }catch (Exception $e){
+                return show(0,$e->getMessage(),array('jump_url'=>$jump_url));
+            }
+            if($errors){
+                return show(0,'排序失败~'.implode(',',$errors),array('jump_url'=>$jump_url));
+            }
+            return show(1,'排序成功~',array('jump_url'=>$jump_url));
+        }
+        return show(0,'排序数据失败~',array('jump_url'=>$jump_url));
+
+    }
+
+
+
 
 
 }

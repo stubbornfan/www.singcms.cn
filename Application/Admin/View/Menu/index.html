@@ -75,15 +75,17 @@
                                 <tbody>
                                 <volist name="menus" id="menu">
                                     <tr>
-                                        <td><input size="4" type="text" name="" value=""/></td>
+                                        <td><input size="4" type="text" name="listorder[{$menu.menu_id}]" value="{$menu.listorder}"/></td>
                                         <td>{$menu.menu_id}</td>
                                         <td>{$menu.name}</td>
                                         <td>{$menu.m}</td>
                                         <td>{$menu.type|getMytype}</td>
                                         <td>{$menu.status|getStatus}</td>
-                                        <td><span class="glyphicon glyphicon-edit" aria-hidden="true" id="singcms-edit" attr-id="{$menu.menu_id}"></span>
-                                            <a href="javascript:void(0)" attr-id=""  id="singcms-delete" attr-a="menu"  attr-message="删除"><span
-                                                class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
+                                        <td><span class="glyphicon glyphicon-edit" aria-hidden="true" id="singcms-edit"
+                                                  attr-id="{$menu.menu_id}"></span>
+                                            <a href="javascript:void(0)" attr-id="{$menu.menu_id}" id="singcms-delete"
+                                               attr-a="menu" attr-message="删除"><span
+                                                    class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
                                         </td>
                                     </tr>
                                 </volist>
@@ -96,6 +98,9 @@
                                 {$pageRes}
                             </ul>
                         </nav>
+                        <button id="button-listorder" type="button" class="btn btn-primary dropdown-toggle" >
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>更新排序
+                        </button>
 
                     </div>
                 </div>

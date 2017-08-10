@@ -13,7 +13,6 @@ class ImageController extends CommonController{
     private $_uploadObj;
     public function __construct()
     {
-
     }
 
     public function ajaxuploadimage(){

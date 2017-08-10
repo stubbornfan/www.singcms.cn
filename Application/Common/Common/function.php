@@ -56,7 +56,33 @@ function showKind($status,$data){
     if($status==0){
         exit(json_encode(array('error'=>0,'url'=>$data)));
     }
-    exit(json_encode(array('error'=>1,'message'=>'长传失败~')));
+    exit(json_encode(array('error'=>1,'message'=>'上传失败~')));
+
+}
+
+function getLoginUsername(){
+    return $_SESSION['adminUser']['username'] ? $_SESSION['adminUser']['username'] :'';
+}
+
+function getCatName($navs,$id){
+    foreach ($navs as $nav){
+        $navlist[$nav['menu_id']] = $nav['name'];
+    }
+    return isset($navlist[$id]) ?$navlist[$id]:'';
+
+}
+
+function getCopyFromById($id){
+    $copyFrom = C("COPY_FROM");
+    return $copyFrom[$id] ?$copyFrom[$id]:'';
+
+}
+
+function isThumb($thumb){
+    if($thumb){
+        return '<span style="color:#ff0000">有</span>';
+    }
+    return '无';
 
 }
 

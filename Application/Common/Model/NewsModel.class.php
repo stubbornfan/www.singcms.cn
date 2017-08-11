@@ -88,6 +88,14 @@ class NewsModel extends Model{
 
     }
 
+    public function updateNewsListorderById($id,$listorder){
+        if(!$id || !is_numeric($id) ){
+            throw_exception('ID不合法');
+        }
+        $data = array('listorder'=>intval($listorder));
+        return $this->_db->where('news_id='.$id)->save($data);
+    }
+
 
 
 

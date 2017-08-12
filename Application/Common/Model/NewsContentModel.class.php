@@ -76,4 +76,6 @@ class NewsContentModel extends Model{
 
 
 
+
+
 }

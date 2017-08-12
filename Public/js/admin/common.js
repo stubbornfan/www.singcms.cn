@@ -163,9 +163,11 @@ $('#singcms-push').click(function () {
     $.post(url,postData,function(result){
         if(result.status ==1){
             //TODO
+            return dialog.success(result.message,result['data']['jump_url']);
         }
         if(result.status == 0){
             //TODO
+            return dialog.error(result.message);
         }
 
     },"JSON");

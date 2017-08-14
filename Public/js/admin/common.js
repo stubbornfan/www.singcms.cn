@@ -147,8 +147,8 @@ $('.singcms-table #singcms-on-off').on('click',function(){
  * 推送JS相关
  */
 $('#singcms-push').click(function () {
-    var id = $('#singcms-push').val();
-    if(id ==0){
+    var id = $('#select-push').val();
+    if(id == 0){
         return dialog.error("请选择推荐位");
     }
     push ={};

@@ -30,15 +30,16 @@
 					<div class="form-group">
 						<label for="inputname" class="col-sm-2 control-label">标题:</label>
 						<div class="col-sm-5">
-							<input type="text" name="title" class="form-control" id="inputname" placeholder="请填写标题">
+							<input value="{$vo.title}" type="text" name="title" class="form-control" id="inputname" placeholder="请填写标题">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputname" class="col-sm-2 control-label">选择推荐位:</label>
 						<div class="col-sm-5">
 							<select class="form-control" name="position_id">
-
-									<option value=""></option>
+								<foreach name="positions" item="position">
+									<option value="{$position.id}" <if condition="$position['id'] eq $vo['position_id']">selected="selected"</if> >{$position.name}</option>
+								</foreach>
 							</select>
 						</div>
 					</div>
@@ -47,30 +48,30 @@
 						<label for="inputname" class="col-sm-2 control-label">缩图:</label>
 						<div class="col-sm-5">
 							<input id="file_upload"  type="file" multiple="true" >
-							<img style="display: none" id="upload_org_code_img" src="" width="150" height="150">
-							<input id="file_upload_image" name="thumb" type="hidden" multiple="true" value="">
+							<img style="display: none" id="upload_org_code_img" src="{$vo.thumb}" width="150" height="150">
+							<input id="file_upload_image" name="thumb" type="hidden" multiple="true" value="{$vo.thumb}">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="inputPassword3" class="col-sm-2 control-label">url:</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" name="url" id="inputPassword3" placeholder="请url地址">
+							<input value="{$vo.url}" type="text" class="form-control" name="url" id="inputPassword3" placeholder="请url地址">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputname" class="col-sm-2 control-label">文章id:</label>
 						<div class="col-sm-5">
-							<input type="text" name="news_id" class="form-control" id="inputname" placeholder="如果和文章无关联的可以不添加文章id">
+							<input value="{$vo.news_id}" type="text" name="news_id" class="form-control" id="inputname" placeholder="如果和文章无关联的可以不添加文章id">
 						</div>
 					</div>
 					<div class="form-group">
 					<label for="inputPassword3" class="col-sm-2 control-label">状态:</label>
 					<div class="col-sm-5">
-						<input type="radio" name="status" id="optionsRadiosInline1" value="1" checked> 开启
-						<input type="radio" name="status" id="optionsRadiosInline2" value="0"> 关闭
+						<input type="radio" name="status" id="optionsRadiosInline1" value="1" <if condition="$vo.status eq 1" >checked</if>> 开启
+						<input type="radio" name="status" id="optionsRadiosInline2" value="0" <if condition="$vo.status eq 0" >checked</if> > 关闭
 					</div>
-
+                     <input type="hidden" name="id" value="{$vo.id}" />
 				</div>
 
 					<div class="form-group">
@@ -99,6 +100,10 @@
 		'ajax_upload_image_url' : '/admin.php?c=image&a=ajaxuploadimage',
 		'ajax_upload_swf' : '/Public/js/party/uploadify.swf'
 	};
+	var thumb = "{$vo.thumb}";
+	if(thumb){
+	    $('#upload_org_code_img').show();
+	}
 </script>
 <!-- /#wrapper -->
 <script type="text/javascript" src="/Public/js/admin/form.js"></script>

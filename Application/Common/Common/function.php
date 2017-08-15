@@ -28,7 +28,7 @@ function getStatus($status){
         $str = '关闭';
     }elseif ($status ==1){
         $str = '正常';
-    }elseif ($str == -1){
+    }elseif ($status == -1){
         $str ='删除';
     }
     return $str;

@@ -37,9 +37,9 @@ class PositioncontentController extends CommonController{
             if(! $_POST['url'] && !$_POST['news_id']){
                 return show(0,'URL和文章ID不能同时为空');
             }
-            if(! isset($_POST['thumb']) || !$_POST['thumb']){
+            if( !isset($_POST['thumb']) || !$_POST['thumb']){
                 if( $_POST['news_id'] ){
-                    $res = D('News')->find('news_id');
+                    $res = D('News')->find($_POST['news_id']);
                     if($res && is_array($res)){
                         $_POST['thumb']= $res['thumb'];
                     }

@@ -51,6 +51,7 @@ class CommonController extends Controller {
             if ($_POST) {
                 $id = $data['id'];
                 $status = $data['status'];
+
                 //执行数据更新操作
                 $res = D($models)->updateStatusById($id, $status);
                 if ($res) {
@@ -67,6 +68,35 @@ class CommonController extends Controller {
         return show(0,'没有提交的数据~');
 
     }
+
+	//排序
+	public function listorder($model=''){
+
+		$listorder = $_POST['listorder'];
+		$jump_url = $_SERVER['HTTP_REFERER'];
+		$errors = array();
+		try {
+			if ($listorder) {
+				foreach ($listorder as $id => $v) {
+					// 执行更新
+					$id = D($model)->updateListorderById($id, $v);
+					if ($id === false) {
+						$errors[] = $id;
+					}
+				}
+				if ($errors) {
+					return show(0, '排序失败-' . implode(',', $errors), array('jump_url' => $jump_url));
+				}
+				return show(1, '排序成功', array('jump_url' => $jump_url));
+			}
+		}catch (Exception $e) {
+			return show(0, $e->getMessage());
+		}
+		return show(0,'排序数据失败',array('jump_url' => $jump_url));
+
+	}
+
+
 
 	
 
